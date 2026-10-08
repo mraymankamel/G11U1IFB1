@@ -239,7 +239,6 @@
         .option-item.selected .opt-letter { background: var(--accent); color: #FFFFFF; border-color: var(--accent);}
         .opt-text { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 19px; color: var(--text-main); }
 
-        /* 🔥 LTR Row-Reverse forces PREV to the left, NEXT/SUBMIT to the right */
         .action-btns { display: flex; flex-direction: row-reverse; justify-content: space-between; gap: 20px; direction: ltr;}
         .btn {
             padding: 20px 30px; border-radius: 16px; font-weight: 900; font-size: 17px; border: 1px solid var(--accent);
@@ -284,7 +283,7 @@
         .result-actions .btn { width: 100%; font-size: 16px; padding: 20px; border-radius: 14px;}
         .btn-full { grid-column: span 2; }
         .btn-whatsapp { background: #25D366; color: #fff; border-color: #25D366; }
-        .btn-whatsapp:hover { box-shadow: 0 0 20px rgba(37,211,102,0.3); background:#1EBE5D; color:#fff;}
+        .btn-whatsapp:hover { box-shadow: 0 10px 25px rgba(37,211,102,0.3); background:#1EBE5D; color:#fff;}
         .btn-pdf { background: #F8FAFC; border-color: #E2E8F0; color: var(--text-main);}
         .btn-pdf:hover { background: #E2E8F0; color: var(--text-main);}
 
@@ -379,7 +378,7 @@
             .result-actions { grid-template-columns: 1fr; gap: 14px;}
             .btn-full { grid-column: span 1; }
             
-            .score-circle { width: 190px; height: 190px; font-size: 50px; border-width: 8px; box-shadow: 0 8px 25px var(--accent-glow), 0 0 0 3px var(--accent); }
+            .score-circle { width: 190px; height: 190px; font-size: 50px; border-width: 8px; box-shadow: 0 10px 30px var(--accent-glow), 0 0 0 4px var(--accent); }
             .result-avatar { width: 60px; height: 60px; font-size: 30px; }
             .badge-award { font-size: 19px; min-width: 260px; padding: 20px;}
         }
@@ -444,7 +443,7 @@
         <div id="start-screen">
             <div class="welcome-card">
                 <h3>🌟 خطوتك نحو القمة تبدأ هنا!</h3>
-                <p>تحدي استثنائي مصمم لقياس تركيزك الحقيقي في قواعد الـ Conditionals. اقرأ كل التفاصيل بدقة واستعد لإثبات جدارتك.<br><br>هل تقبل التحدي وتستطيع الوصول للقمة؟</p>
+                <p>تحدي استثنائي مصمم لقياس تركيزك الحقيقي في قواعد اللغة. اقرأ كل التفاصيل بدقة واستعد لإثبات جدارتك.<br><br>هل تقبل التحدي وتستطيع الوصول للقمة؟</p>
             </div>
 
             <h4 style="color: var(--text-main); font-weight: 800; margin-bottom: 15px; text-align: center;">اختار مستوى التحدي الزمني:</h4>
@@ -475,7 +474,7 @@
                     <div class="hud-student">
                         <div class="avatar-ring" id="hud-avatar">💎</div> <span id="hud-name">--</span>
                     </div>
-                    <div class="hud-counter" id="progress-count">Q: 1 / 41</div>
+                    <div class="hud-counter" id="progress-count">Q: 1 / 39</div>
                 </div>
                 <div class="hud-bar-container">
                     <div class="hud-bar-fill" id="energy-bar">
@@ -633,7 +632,6 @@ function changeFontSize(change) {
     if(newSize >= 16 && newSize <= 30) { root.style.setProperty('--q-font-size', newSize + 'px'); }
 }
 
-/* 🔥 EXACT DATA ARRAY - 41 Questions extracted perfectly from images 11,12,13,14 🔥 */
 const rawData = [
     { q: "If Samy had read that book, he ........ what happened at the end.", options: ["knew", "will know", "would know", "would have known"], answer: 3, rule: "Third Conditional", exp: "<div class='exp-en'>💡 <b>Explanation:</b> If + past perfect (had read), the main clause uses 'would have + past participle'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> فعل الشرط ماضي تام (had read)، إذن الجواب (would have known) الحالة التالتة.</div>" },
     { q: "If you freeze water, it ........ ice.", options: ["became", "becomes", "would become", "is becoming"], answer: 1, rule: "Zero Conditional", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Scientific fact. If + present simple, present simple.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> حقيقة علمية ثابتة، نستخدم مضارع بسيط (becomes) الحالة الصفرية.</div>" },
@@ -688,7 +686,7 @@ function setTimeAttack(level, el) {
 
 let quizData = [];
 let currentQuestion = 0, userAnswers = {}, studentName = "", selectedAvatar = '💎';
-let totalSeconds = 41 * 240, qTimeLeft = 15, timerInterval = null;
+let totalSeconds = 39 * 240, qTimeLeft = 15, timerInterval = null;
 let isSubmitting = false; 
 let pauseCount = 0, isPaused = false; 
 
@@ -768,7 +766,7 @@ function startQuiz() {
     document.getElementById("hud-name").innerText = studentName;
     document.getElementById("hud-moving-avatar").innerText = selectedAvatar;
 
-    totalSeconds = quizData.length * 240; // 4 mins per question for classic
+    totalSeconds = quizData.length * 240; 
     if (!isTimeAttack) {
         let m = Math.floor(totalSeconds / 60), s = totalSeconds % 60;
         let displayM = m < 100 ? (m < 10 ? '0'+m : m) : m;
@@ -1015,7 +1013,7 @@ function calculateScore() {
             try {
                 let usedTime = isTimeAttack ? "Time Attack" : ( (quizData.length * 240) - totalSeconds) + "s";
                 let payload = new URLSearchParams({
-                    examName: "Platinum Crystal: Conditionals (41 Qs)",
+                    examName: "Platinum Crystal Challenge (39 Qs)",
                     studentName: studentName,
                     score: `${score} / ${quizData.length}`,
                     percentage: percent,
